@@ -40,6 +40,9 @@ import { uuid } from '@zodash/doreamon';
 console.log(uuid()); // -> 0e3b84af-f911-4a55-b78a-cedf6f0bd815
 ```
 
+## Roadmap
+* [《前端标准库设计 - 标准功能》](https://www.yuque.com/docs/share/6b503df9-ee29-40e3-9048-475b59e2b0fc?)
+
 ## Contribution
 
 Read [Contributing Guide](.github/CONTRIBUTING.md) for development setup instructions.
