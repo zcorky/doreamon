@@ -22,38 +22,34 @@ import is from './is';
 
 import ms from './ms';
 
-import object from './object';
-import array from './array';
-import string from './string';
-import func from './func';
+import * as type from './type';
 
-export interface ICollections {
+export interface IDoreamon {
   logger: typeof logger;
   debug: typeof debug;
 
-  request: typeof request;
-  date: typeof date;
-  qs: typeof qs;
-  event: typeof event;
-  storage: typeof storage;
-  device: typeof device;
-  cookie: typeof cookie;
-  fs: typeof fs;
+  is: typeof is;
+  type: typeof type;
 
+  date: typeof date;
+  event: typeof event;
   delay: typeof delay;
   uuid: typeof uuid;
   random: typeof random;
-  is: typeof is;
 
   ms: typeof ms;
 
-  object: typeof object;
-  array: typeof array;
-  string: typeof string;
-  func: typeof func;
+  qs: typeof qs;
+  url: typeof url;
+  cookie: typeof cookie;
+  request: typeof request;
+
+  device: typeof device;
+
+  storage: typeof storage;
+  fs: typeof fs;
 
   dom: typeof dom;
-  url: typeof url;
 
   register: typeof register;
   get: typeof get;
@@ -61,88 +57,70 @@ export interface ICollections {
   /** Depreciated */
   use: typeof register;
 
+  // @depreciated
+  object: typeof type.object;
+  array: typeof type.array;
+  string: typeof type.string;
+  func: typeof type.func;
+
   [key: string]: any;
 }
 
 function register<T = any>(key: string, value: T) {
-  if (collections[key]) {
+  if (doreamon[key]) {
     throw new Error(`Doreamon cannot override ${key}`);
   }
 
-  collections[key] = value;
+  doreamon[key] = value;
 }
 
 function get<T = any>(key: string): T {
-  if (!collections[key]) {
+  if (!doreamon[key]) {
     throw new Error(`Doreamon cannot found ${key}`);
   }
 
-  return collections[key];
+  return doreamon[key];
 }
 
 const use = register;
 
-export {
+export const doreamon: IDoreamon = {
   logger,
   debug,
-  request,
+  
+  is,
+  type,
+  
   date,
-  qs,
   event,
-  storage,
-  device,
-  cookie,
-  fs,
   delay,
   uuid,
   random,
-  is,
+
   ms,
-  object,
-  array,
-  string,
-  func,
-  dom,
+
+  qs,
   url,
+  cookie,
+  request,
+
+  device,
+
+  storage,
+  fs,
+
+  dom,
+  
   //
   register,
   get,
   use,
+
+  // @depreciated
+  object: type.object,
+  array: type.array,
+  string: type.string,
+  func: type.func,
 };
 
-export const collections: ICollections = {
-  logger,
-  debug,
-
-  request,
-  date,
-  qs,
-  event,
-  storage,
-  device,
-  cookie,
-  fs,
-
-  delay,
-  uuid,
-  random,
-  is,
-
-  ms,
-
-  object,
-  array,
-  string,
-  func,
-
-  dom,
-  url,
-
-  //
-  register,
-  get,
-  //
-  use,
-};
-
-export default collections;
+export default doreamon;
