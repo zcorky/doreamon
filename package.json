@@ -1,0 +1,141 @@
+{
+  "name": "@zodash/doreamon",
+  "version": "1.0.0",
+  "description": "Zero's Standard Lib，like doreamon box",
+  "main": "lib/index.js",
+  "repository": "https://github.com/zcorky/doreamon",
+  "homepage": "https://github.com/zcorky/doreamon",
+  "bugs": {
+    "url": "https://github.com/zcorky/doreamon/issues"
+  },
+  "keywords": [
+    "zcorky",
+    "zodash",
+    "utils",
+    "doreamon"
+  ],
+  "author": "Zero <uniquecolesmith@gmail.com> (https://moeover.com)",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "test": "jest -w 1",
+    "fmt": "eslint src/**/*.{ts,tsx} --fix && prettier --write src/**/{*.ts,*.tsx}",
+    "commit": "cz",
+    "clean": "rimraf -rf lib",
+    "coverage": "codecov",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.3.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "@zcorky/tsconfig": "^0.0.3",
+    "codecov": "^3.8.2",
+    "commitizen": "^4.2.4",
+    "cross-env": "^5.2.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "dayjs": "^1.7.8",
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.0.1",
+    "prettier": "^2.3.2",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  },
+  "files": [
+    "lib/"
+  ],
+  "jest": {
+    "roots": [
+      "test"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "test/.*\\.spec\\.(ts|tsx)$",
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 90,
+        "lines": 90,
+        "statements": -10
+      }
+    }
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "echo 'lint stage run'",
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{json.css,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@zcorky/deep-copy": "^0.0.2",
+    "@zcorky/deep-equal": "^0.0.1",
+    "@zcorky/device": "^0.0.6",
+    "@zcorky/fz": "^1.2.9",
+    "@zcorky/is": "^1.0.7",
+    "@zcorky/moment": "^1.1.0",
+    "@zcorky/query-string": "^1.0.2",
+    "@zcorky/storage": "^1.2.3",
+    "@zodash/camel-case": "^0.1.12",
+    "@zodash/capitalize": "^0.1.7",
+    "@zodash/cookie": "^0.0.1",
+    "@zodash/debounce": "^0.1.8",
+    "@zodash/debug": "^0.0.22",
+    "@zodash/delay": "^0.1.7",
+    "@zodash/dom": "^0.1.10",
+    "@zodash/error": "^0.1.8",
+    "@zodash/event": "^0.1.8",
+    "@zodash/find": "^0.1.8",
+    "@zodash/format": "^1.2.9",
+    "@zodash/fs": "^0.0.16",
+    "@zodash/get": "^1.2.1",
+    "@zodash/group-by": "^1.1.10",
+    "@zodash/load-js": "^0.2.13",
+    "@zodash/logger": "^0.2.24",
+    "@zodash/memoize": "^1.1.7",
+    "@zodash/ms": "^0.1.13",
+    "@zodash/omit": "^1.1.7",
+    "@zodash/once": "^0.1.6",
+    "@zodash/pick": "^1.1.7",
+    "@zodash/random": "^1.2.11",
+    "@zodash/snake-case": "^0.1.9",
+    "@zodash/throttle": "^0.1.8",
+    "@zodash/unique": "^0.1.7",
+    "@zodash/uuid": "^0.1.7"
+  }
+}

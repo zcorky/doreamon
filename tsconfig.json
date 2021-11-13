@@ -1,0 +1,10 @@
+{
+  "extends": "@zcorky/tsconfig",
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "sourceMap": false,
+    "outDir": "lib"
+  },
+  "include": ["src/**/*.ts"]
+}
