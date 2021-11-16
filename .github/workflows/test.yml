@@ -1,24 +1,23 @@
-name: Publish NPM Package
+name: Test NPM Package
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - master
+  schedule:
+    - cron: '0 1 * * 1'
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   on-success:
-    needs: publish
+    needs: test
     runs-on: ubuntu-latest
-    if: ${{ needs.publish.result == 'success' }}
+    if: ${{ needs.test.result == 'success' }}
     steps:
       - name: Notification Feishu
         uses: whatwewant/action-robot-feishu@v0.0.12
         with:
           url: ${{ secrets.NPM_VERSION_FEISHU_BOT_WEBHOOK_URL }}
-          title: '✅ NPM 发布：${{ github.repository }}'
+          title: '✅ NPM 测试：${{ github.repository }}'
           text: |
             分支: ${{ github.ref }}
             提交信息: ${{ github.event.head_commit.message }}
@@ -26,22 +25,22 @@ jobs:
             状态: 构建成功（https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}）
 
   on-failure:
-    needs: publish
+    needs: test
     runs-on: ubuntu-latest
-    if: ${{ needs.publish.result == 'failure' }}
+    if: ${{ needs.test.result == 'failure' }}
     steps:
       - name: Notification Feishu
         uses: whatwewant/action-robot-feishu@v0.0.12
         with:
           url: ${{ secrets.NPM_VERSION_FEISHU_BOT_WEBHOOK_URL }}
-          title: '❌ NPM 发布：${{ github.repository }}'
+          title: '❌ NPM 测试：${{ github.repository }}'
           text: |
             分支: ${{ github.ref }}
             提交信息: ${{ github.event.head_commit.message }}
             提交人: ${{ github.actor }}
             状态: 构建失败（https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}）
 
-  publish:
+  test:
     # bootstrap:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -87,14 +86,3 @@ jobs:
       - name: Make Testing
         run: yarn test
 
-      - name: Make Coverage
-        run: yarn coverage
-
-      - name: Before Publish
-        run: cp .npmrc.template .npmrc
-
-      - name: Make Publish
-        run: yarn publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
