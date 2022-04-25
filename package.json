@@ -110,7 +110,7 @@
     "@zcorky/is": "^1.0.7",
     "@zcorky/moment": "^1.2.3",
     "@zcorky/query-string": "^1.0.2",
-    "@zcorky/storage": "^1.3.2",
+    "@zcorky/storage": "^1.3.3",
     "@zodash/camel-case": "^0.1.12",
     "@zodash/capitalize": "^0.1.7",
     "@zodash/cookie": "^0.0.1",
