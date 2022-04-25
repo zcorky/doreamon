@@ -1,21 +1,24 @@
 {
   "name": "@zodash/doreamon",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "Zero's Standard Lib，like doreamon box",
-  "main": "lib/index.js",
-  "repository": "https://github.com/zcorky/doreamon",
-  "homepage": "https://github.com/zcorky/doreamon",
-  "bugs": {
-    "url": "https://github.com/zcorky/doreamon/issues"
-  },
   "keywords": [
     "zcorky",
     "zodash",
     "utils",
     "doreamon"
   ],
-  "author": "Zero <uniquecolesmith@gmail.com> (https://moeover.com)",
+  "homepage": "https://github.com/zcorky/doreamon",
+  "bugs": {
+    "url": "https://github.com/zcorky/doreamon/issues"
+  },
+  "repository": "https://github.com/zcorky/doreamon",
   "license": "MIT",
+  "author": "Zero <uniquecolesmith@gmail.com> (https://moeover.com)",
+  "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "build": "npm run clean && tsc",
     "test": "jest -w 1",
@@ -25,33 +28,21 @@
     "coverage": "codecov",
     "prepare": "husky install"
   },
-  "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^16.3.3",
-    "@typescript-eslint/eslint-plugin": "^4.28.3",
-    "@typescript-eslint/parser": "^4.28.3",
-    "@zcorky/tsconfig": "^0.0.3",
-    "codecov": "^3.8.2",
-    "commitizen": "^4.2.4",
-    "cross-env": "^5.2.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "dayjs": "^1.7.8",
-    "eslint": "^7.31.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "husky": "^7.0.1",
-    "jest": "^27.0.6",
-    "lint-staged": "^11.0.1",
-    "prettier": "^2.3.2",
-    "rimraf": "^2.6.2",
-    "ts-jest": "^27.0.3",
-    "ts-node": "^10.1.0",
-    "typescript": "^4.3.5"
+  "lint-staged": {
+    "**/*.ts": [
+      "echo 'lint stage run'",
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{json.css,md,yml,yaml}": [
+      "prettier --write"
+    ]
   },
-  "files": [
-    "lib/"
-  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "jest": {
     "roots": [
       "test"
@@ -83,24 +74,6 @@
         "statements": -10
       }
     }
-  },
-  "lint-staged": {
-    "**/*.ts": [
-      "echo 'lint stage run'",
-      "eslint --fix",
-      "prettier --write --ignore-unknown"
-    ],
-    "*.{json.css,md,yml,yaml}": [
-      "prettier --write"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@zcorky/deep-copy": "^0.0.2",
@@ -137,5 +110,32 @@
     "@zodash/throttle": "^0.1.8",
     "@zodash/unique": "^0.1.7",
     "@zodash/uuid": "^0.1.7"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.3.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "@zcorky/tsconfig": "^0.0.3",
+    "codecov": "^3.8.2",
+    "commitizen": "^4.2.4",
+    "cross-env": "^5.2.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "dayjs": "^1.7.8",
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.0.1",
+    "prettier": "^2.3.2",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
