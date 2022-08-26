@@ -8,4 +8,8 @@ const logger: Logger & {
 logger.getLogger = getLogger;
 logger.setDisable = Logger.setDisable;
 
+if (typeof window !== 'undefined') {
+  (window as any).__DOREAMON_LOGGER__ = logger;
+}
+
 export default logger;
