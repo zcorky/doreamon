@@ -110,7 +110,8 @@
     "@zodash/template": "^0.2.16",
     "@zodash/throttle": "^0.1.8",
     "@zodash/unique": "^0.1.7",
-    "@zodash/uuid": "^0.1.7"
+    "@zodash/uuid": "^0.1.7",
+    "immer": "^9.0.15"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",

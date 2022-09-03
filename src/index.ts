@@ -22,6 +22,8 @@ import is from './is';
 
 import ms from './ms';
 
+import immer from './immer';
+
 import * as type from './type';
 
 export interface IDoreamon {
@@ -63,6 +65,9 @@ export interface IDoreamon {
   string: typeof type.string;
   func: typeof type.func;
 
+  // immer
+  immer: typeof immer;
+
   [key: string]: any;
 }
 
@@ -87,10 +92,10 @@ const use = register;
 export const doreamon: IDoreamon = {
   logger,
   debug,
-  
+
   is,
   type,
-  
+
   date,
   event,
   delay,
@@ -110,7 +115,7 @@ export const doreamon: IDoreamon = {
   fs,
 
   dom,
-  
+
   //
   register,
   get,
@@ -121,6 +126,9 @@ export const doreamon: IDoreamon = {
   array: type.array,
   string: type.string,
   func: type.func,
+
+  // immer
+  immer,
 };
 
 export default doreamon;
