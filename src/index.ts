@@ -24,6 +24,8 @@ import ms from './ms';
 
 import immer from './immer';
 
+import classnames from './classnames';
+
 import * as type from './type';
 
 export interface IDoreamon {
@@ -67,6 +69,9 @@ export interface IDoreamon {
 
   // immer
   immer: typeof immer;
+
+  // classnames
+  classnames: typeof classnames;
 
   [key: string]: any;
 }
@@ -129,6 +134,9 @@ export const doreamon: IDoreamon = {
 
   // immer
   immer,
+
+  // classnames
+  classnames,
 };
 
 export default doreamon;
