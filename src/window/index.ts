@@ -1,4 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const window = require('global/window');
+import global from '../global';
 
-export default window;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+// const window = require('global/window');
+
+export default global;
