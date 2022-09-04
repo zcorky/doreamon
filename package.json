@@ -112,6 +112,7 @@
     "@zodash/unique": "^0.1.7",
     "@zodash/uuid": "^0.1.7",
     "classnames": "^2.3.1",
+    "global": "^4.4.0",
     "immer": "^9.0.15"
   },
   "devDependencies": {

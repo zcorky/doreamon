@@ -30,6 +30,12 @@ import noop from './noop';
 
 import * as type from './type';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const global = require('global');
+
+const gloablStore =
+  global.__DOREAMON_REGISTRY__ || (global.__DOREAMON_REGISTRY__ = {});
+
 export interface IDoreamon {
   logger: typeof logger;
   debug: typeof debug;
@@ -82,19 +88,19 @@ export interface IDoreamon {
 }
 
 function register<T = any>(key: string, value: T) {
-  if (doreamon[key]) {
+  if (gloablStore[key]) {
     throw new Error(`Doreamon cannot override ${key}`);
   }
 
-  doreamon[key] = value;
+  gloablStore[key] = value;
 }
 
 function get<T = any>(key: string): T {
-  if (!doreamon[key]) {
+  if (!gloablStore[key]) {
     throw new Error(`Doreamon cannot found ${key}`);
   }
 
-  return doreamon[key];
+  return gloablStore[key];
 }
 
 const use = register;
