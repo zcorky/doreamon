@@ -1,3 +1,6 @@
+import global from './global';
+import window from './window';
+
 import logger from './logger';
 import debug from './debug';
 
@@ -30,13 +33,13 @@ import noop from './noop';
 
 import * as type from './type';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const global = require('global');
-
 const gloablStore =
   global.__DOREAMON_REGISTRY__ || (global.__DOREAMON_REGISTRY__ = {});
 
 export interface IDoreamon {
+  global: typeof global;
+  window: typeof window;
+
   logger: typeof logger;
   debug: typeof debug;
 
@@ -106,6 +109,9 @@ function get<T = any>(key: string): T {
 const use = register;
 
 export const doreamon: IDoreamon = {
+  global,
+  window,
+
   logger,
   debug,
 
