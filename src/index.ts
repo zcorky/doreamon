@@ -26,6 +26,8 @@ import immer from './immer';
 
 import classnames from './classnames';
 
+import noop from './noop';
+
 import * as type from './type';
 
 export interface IDoreamon {
@@ -72,6 +74,9 @@ export interface IDoreamon {
 
   // classnames
   classnames: typeof classnames;
+
+  // noop
+  noop: typeof noop;
 
   [key: string]: any;
 }
@@ -137,6 +142,8 @@ export const doreamon: IDoreamon = {
 
   // classnames
   classnames,
+
+  noop,
 };
 
 export default doreamon;
