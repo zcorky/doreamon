@@ -23,6 +23,8 @@ import uuid from './uuid';
 import random from './random';
 import is from './is';
 
+import i18n from './i18n';
+
 import ms from './ms';
 
 import immer from './immer';
@@ -135,6 +137,8 @@ export const doreamon: IDoreamon = {
 
   storage,
   fs,
+
+  i18n,
 
   dom,
 
