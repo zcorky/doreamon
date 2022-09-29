@@ -90,7 +90,7 @@
     "@zodash/debounce": "^0.1.8",
     "@zodash/debug": "^0.0.22",
     "@zodash/delay": "^0.1.7",
-    "@zodash/dom": "^0.1.19",
+    "@zodash/dom": "^0.1.20",
     "@zodash/error": "^0.1.8",
     "@zodash/event": "^0.1.8",
     "@zodash/find": "^0.1.8",
