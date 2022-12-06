@@ -1,24 +1,35 @@
 import { Context, Middleware } from '@zodash/onion';
 import { getLogger, Logger, Options } from '@zodash/logger';
 
-const memoryStorage: Middleware<Context<any, any, any>> = async (
-  ctx,
-  next,
-) => {
+const MAX_MEMORY_LOG_LENGTH = 1000;
+const main = 'main';
+
+const createMemoryStorage = (
+  namespace: string,
+): Middleware<Context<any, any, any>> => {
   if (!(window as any).__DOREAMON_LOGGER__._storage) {
     (window as any).__DOREAMON_LOGGER__._storage = [];
-  } else if ((window as any).__DOREAMON_LOGGER__._storage.length > 1000) {
-    (window as any).__DOREAMON_LOGGER__._storage.shift();
   }
 
-  (window as any).__DOREAMON_LOGGER__._storage.push(ctx.input);
-  await next();
+  const storage = (window as any).__DOREAMON_LOGGER__._storage as any[];
+  return async (ctx, next) => {
+    // add namespace
+    ctx.input.namespace = namespace;
+
+    if (storage.length > MAX_MEMORY_LOG_LENGTH) {
+      storage.shift();
+    }
+
+    storage.push(ctx.input);
+
+    await next();
+  };
 };
 
 const logger: Logger & {
   getLogger: typeof getLogger;
   setDisable: typeof Logger.setDisable;
-} = new Logger('main') as any;
+} = new Logger(main) as any;
 
 logger.getLogger = (name: string, options?: Options): Logger => {
   if ((window as any).__DOREAMON_LOGGER__[name]) {
@@ -26,7 +37,7 @@ logger.getLogger = (name: string, options?: Options): Logger => {
   }
 
   const lg = getLogger(name, options);
-  lg.use(memoryStorage);
+  lg.use(createMemoryStorage(name));
 
   if (!(window as any).__DOREAMON_LOGGER__)
     (window as any).__DOREAMON_LOGGER__ = logger;
@@ -38,7 +49,7 @@ logger.getLogger = (name: string, options?: Options): Logger => {
 
 logger.setDisable = Logger.setDisable;
 
-logger.use(memoryStorage);
+logger.use(createMemoryStorage(main));
 
 if (typeof window !== 'undefined') {
   (window as any).__DOREAMON_LOGGER__ = logger;
