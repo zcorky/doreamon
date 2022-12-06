@@ -9,6 +9,10 @@ const main = 'main';
 const createMemoryStorage = (
   namespace: string,
 ): Middleware<Context<any, any, any>> => {
+  if (!global.__DOREAMON_LOGGER__) {
+    global.__DOREAMON_LOGGER__ = logger;
+  }
+
   if (!global.__DOREAMON_LOGGER__._storage) {
     global.__DOREAMON_LOGGER__._storage = [];
   }
