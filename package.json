@@ -100,7 +100,7 @@
     "@zodash/group-by": "^1.1.10",
     "@zodash/i18n": "^0.0.21",
     "@zodash/load-js": "^0.2.15",
-    "@zodash/logger": "^1.0.3",
+    "@zodash/logger": "^1.0.6",
     "@zodash/memoize": "^1.1.7",
     "@zodash/ms": "^0.1.13",
     "@zodash/omit": "^1.1.7",
