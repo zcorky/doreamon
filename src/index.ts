@@ -31,6 +31,10 @@ import immer from './immer';
 
 import classnames from './classnames';
 
+import match from './match';
+
+import hotkeys from './hotkeys';
+
 import noop from './noop';
 
 import * as type from './type';
@@ -85,6 +89,12 @@ export interface IDoreamon {
 
   // classnames
   classnames: typeof classnames;
+
+  // match patterns
+  match: typeof match;
+
+  // hotkeys
+  hotkeys: typeof hotkeys;
 
   // noop
   noop: typeof noop;
@@ -158,6 +168,12 @@ export const doreamon: IDoreamon = {
 
   // classnames
   classnames,
+
+  // match patterns
+  match,
+
+  // hotkeys
+  hotkeys,
 
   noop,
 };
