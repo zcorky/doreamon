@@ -62,7 +62,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: zmicro-design/action-setup-node@v1
         with:
           node-version: 14.x
           registry-url: https://registry.npmjs.org
@@ -85,4 +85,3 @@ jobs:
 
       - name: Make Testing
         run: yarn test
-
