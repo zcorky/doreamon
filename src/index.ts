@@ -37,6 +37,8 @@ import hotkeys from './hotkeys';
 
 import noop from './noop';
 
+import mount from './mount';
+
 import * as type from './type';
 
 const gloablStore =
@@ -98,6 +100,9 @@ export interface IDoreamon {
 
   // noop
   noop: typeof noop;
+
+  // mount doreamon to global or window
+  mount: typeof mount;
 
   [key: string]: any;
 }
@@ -176,6 +181,9 @@ export const doreamon: IDoreamon = {
   hotkeys,
 
   noop,
+
+  // mount doreamon to global or window
+  mount,
 };
 
 export default doreamon;
