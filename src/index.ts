@@ -71,6 +71,7 @@ export interface IDoreamon {
 
   storage: typeof storage;
   fs: typeof fs;
+  i18n: typeof i18n;
 
   dom: typeof dom;
 
